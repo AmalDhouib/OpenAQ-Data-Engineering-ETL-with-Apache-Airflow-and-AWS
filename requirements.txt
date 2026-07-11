@@ -1,0 +1,7 @@
+apache-airflow
+pandas
+boto3
+s3fs
+configparser 
+requests
+s3fs
