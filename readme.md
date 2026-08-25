@@ -36,6 +36,7 @@ The project demonstrates a modern cloud-native ETL architecture using Apache Air
 - Amazon Redshift Serverless
 - Pandas
 - PySpark
+- GitHub Actions
 
 ## Data Source
 
@@ -96,13 +97,13 @@ cd OpenAQ-Data-Engineering-ETL-with-Apache-Airflow-and-AWS
 **Windows (PowerShell):**
 
 ```powershell
-New-Item -ItemType Directory -Path config,dags,data,logs,pipeline,utils
+New-Item -ItemType Directory -Path config,dags,data,logs,pipelines,tests,utils
 ```
 
 **Linux / macOS:**
 
 ```bash
-mkdir config dags data etls logs pipeline tests utils
+mkdir -p config dags data logs pipelines tests utils
 ```
 
 ### 3. Configure environment variables
@@ -174,12 +175,15 @@ docker-compose down -v
 ```
 project/
 │
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
 ├── dags/
 ├── data/
 ├── config/
 ├── logs/
 ├── pipelines/
-├── tests/
 ├── utils/
 ├── airflow.env
 ├── docker-compose.yml
@@ -200,6 +204,33 @@ extract_openAq
       +
 s3_upload
 ```
+## CI Pipeline
+
+The project uses **GitHub Actions** to automatically validate the code and Docker environment on pushes and pull requests to the `main` branch.
+
+The CI workflow consists of two jobs:
+
+1. **Code Validation**
+   - Checks out the repository
+   - Sets up Python 3.9
+   - Validates Python syntax in the `dags`, `pipelines`, and `utils` directories
+
+2. **Docker Build**
+   - Runs only if code validation succeeds
+   - Builds the Airflow Docker image
+   - Verifies that the Docker environment and Python dependencies can be successfully built
+
+```text
+Push / Pull Request
+        │
+        ▼
+ Code Validation
+        │
+        ▼
+   Docker Build
+        │
+        ▼
+   CI Successful
 
 ## AWS Data Lake
 
@@ -245,7 +276,6 @@ Stores curated datasets optimized for analytical workloads.
 ## Future Improvements
 
 - Data Quality validation
-- CI/CD using GitHub Actions
 - CloudWatch monitoring
 - PowerBI dashboards
 
