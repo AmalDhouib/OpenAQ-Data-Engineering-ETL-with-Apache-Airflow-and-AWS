@@ -231,7 +231,7 @@ Push / Pull Request
         │
         ▼
    CI Successful
-
+```
 ## AWS Data Lake
 
 The project leverages several AWS services:
