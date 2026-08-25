@@ -247,7 +247,7 @@ Stores curated datasets optimized for analytical workloads.
 - Data Quality validation
 - CI/CD using GitHub Actions
 - CloudWatch monitoring
-- QuickSight dashboards
+- PowerBI dashboards
 
 
 ### Airflow DAG
