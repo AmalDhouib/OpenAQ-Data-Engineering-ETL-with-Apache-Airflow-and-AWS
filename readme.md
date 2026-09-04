@@ -15,7 +15,7 @@ The objective of this project is to build a complete ETL solution capable of:
 - Querying the data using Amazon Athena
 - Loading curated datasets into Amazon Redshift for analytical workloads
 
-The project demonstrates a modern cloud-native ETL architecture using Apache Airflow and AWS services.
+The project demonstrates an ETL architecture using Apache Airflow and AWS services.
 
 ## Architecture
 
